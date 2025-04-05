@@ -1,13 +1,14 @@
 import { TonClient, WalletContractV4, internal, contractAddress, beginCell, toNano, Cell, StateInit, Address } from 'ton';
 import { mnemonicToWalletKey } from 'ton-crypto';
 import * as fs from 'fs';
+import * as path from 'path';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
 
 // === КОНФИГ ===
 const MNEMONIC = process.env.MNEMONIC;
-const DNS_AUTO_CODE_PATH = '../contract/dns-auto-code.cell';
+const DNS_AUTO_CODE_PATH = path.join(__dirname, '../contract/dns-auto-code.cell');
 const TONCENTER_ENDPOINT = 'https://toncenter.com/api/v2/jsonRPC';
 const VALUE_TO_SEND = toNano('0.2');                // С запасом
 const REGISTRATION_PRICE = toNano('0.05');          // Цена регистрации поддомена

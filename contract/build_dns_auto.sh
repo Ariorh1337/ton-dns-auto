@@ -25,6 +25,8 @@ cd ..
 # === 4. Компилируем dns-auto-code.fc в .fif ===
 FUNC=./ton/build/crypto/func
 
+echo -e "\n Если тут ругается на путь, стартани еще разок"
+
 STDLIB=./ton/crypto/smartcont/stdlib.fc
 SOURCE=./ton/crypto/smartcont/dns-auto-code.fc
 OUT=dns-auto-code.cell

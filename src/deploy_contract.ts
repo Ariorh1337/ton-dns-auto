@@ -18,6 +18,9 @@ const PRICE_PER_BIT = toNano('0.0001');             // Стандартная ц
 const NEXT_HOUSEKEEPING = 0;
 const LAST_HOUSEKEEPING = 0;
 
+// Функция для задержки
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 async function main() {
     if (!MNEMONIC) {
         throw new Error('MNEMONIC не найден в .env');
@@ -56,8 +59,12 @@ async function main() {
 
     console.log('Будущий адрес контракта:', futureAddress);
 
+    // Добавляем задержку перед получением seqno
+    await delay(10000);
     const seqno = await wallet.getSeqno();
 
+    // Добавляем задержку перед отправкой транзакции
+    await delay(10000);
     await wallet.sendTransfer({
         seqno,
         secretKey: key.secretKey,

@@ -477,7 +477,7 @@ int check_owner(cell cat_table, cell owner_info, int src_wc, int src_addr, int s
     return (exact?, null()); ;; update: reuse exact? to return 8 for \0
   }
   ifnot (exact?) { ;; incomplete subdomain found, must return next resolver
-    return (pfx.slice_bits(), cat_table);
+    return ("dns_next_resolver"H, null()); ;; Возвращаем стандартный код next resolver
   }
   
   int pfx_bits = pfx.slice_bits();

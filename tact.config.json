@@ -1,0 +1,9 @@
+{
+    "projects": [
+        {
+            "name": "auto_dns",
+            "path": "contract/src/auto_dns.tact",
+            "output": "build"
+        }
+    ]
+} 

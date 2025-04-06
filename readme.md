@@ -103,38 +103,6 @@
 - `19`: IPv6-адрес
 - `20-31`: Дополнительные DNS-записи
 
-#### Добавление записей
-
-1. Добавление записи:
-   ```bash
-   npm run update -- <домен> <категория> <значение>
-   ```
-
-2. Примеры использования:
-   ```bash
-   # Добавить смарт-контракт для поддомена
-   npm run update -- contract.ariorh.ton 0 "EQCD39VS5jcptHL8vMjEXrzGaRcCVYto7HUn4bpAOg8xqB2N"
-
-   # Добавить адрес кошелька для поддомена
-   npm run update -- wallet.ariorh.ton 1 "EQCD39VS5jcptHL8vMjEXrzGaRcCVYto7HUn4bpAOg8xqB2N"
-
-   # Добавить сайт для поддомена
-   # Можно использовать как с https://, так и без него
-   npm run update -- blog.ariorh.ton 2 "blog.ariorh.ton"
-   npm run update -- shop.ariorh.ton 2 "https://shop.ariorh.ton"
-   npm run update -- forum.ariorh.ton 2 "http://forum.ariorh.ton"
-
-   # Добавить Telegram-бот для поддомена
-   npm run update -- bot.ariorh.ton 7 "@my_bot"
-
-   # Добавить IPFS-хэш для поддомена
-   npm run update -- ipfs.ariorh.ton 11 "QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco"
-
-   # Добавить IP-адрес для поддомена
-   npm run update -- api.ariorh.ton 18 "192.168.1.1"
-   npm run update -- api.ariorh.ton 19 "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-   ```
-
 #### Время жизни записей
 
 - Записи не имеют явного времени жизни
@@ -142,6 +110,14 @@
   - Контракт не будет закрыт
   - Запись не будет перезаписана новой
   - Владелец не изменит запись
+
+#### Добавление записей
+
+Добавление записи: (примеры использования смотри ниже в главе #Примеры использования)
+
+```bash
+npm run update -- <домен> <категория> <значение>
+```
 
 ### 5. Закрытие контракта
 
@@ -154,31 +130,36 @@ npm run terminate
 
 ### Создание поддоменов
 ```bash
-# Поддомен для API
-npm run update -- api.ariorh.ton 18 "192.168.1.1"
-npm run update -- api.ariorh.ton 19 "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-
-# Поддомен для Telegram бота
-npm run update -- bot.ariorh.ton 7 "@my_bot"
-npm run update -- bot.ariorh.ton 8 "@my_channel"
-npm run update -- bot.ariorh.ton 9 "@my_group"
-
-# Поддомен для IPFS контента
-npm run update -- ipfs.ariorh.ton 11 "QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco"
-
-# Поддомен для сайта
-npm run update -- blog.ariorh.ton 2 "blog.ariorh.ton"
-npm run update -- shop.ariorh.ton 2 "shop.ariorh.ton"
-
 # Поддомен для смарт-контракта
 npm run update -- contract.ariorh.ton 0 "EQCD39VS5jcptHL8vMjEXrzGaRcCVYto7HUn4bpAOg8xqB2N"
+
+# Поддомен для ADNL
+npm run update -- adnl.ariorh.ton 0 "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
 
 # Поддомен для кошелька
 npm run update -- wallet.ariorh.ton 1 "EQCD39VS5jcptHL8vMjEXrzGaRcCVYto7HUn4bpAOg8xqB2N"
 
+# Поддомен для сайта HTTPS
+npm run update -- blog.ariorh.ton 2 "https://blog.ariorh.com"
+# Поддомен для сайта HTTP
+npm run update -- shop.ariorh.ton 2 "http://shop.ariorh.com"
+npm run update -- store.ariorh.ton 2 "store.ariorh.com"
+
+# Поддомен для Telegram бота
+npm run update -- bot.ariorh.ton 7 "@my_bot"
+npm run update -- channel.ariorh.ton 8 "@my_channel"
+npm run update -- group.ariorh.ton 9 "@my_group"
+
+# Поддомен для IPFS контента
+npm run update -- ipfs.ariorh.ton 11 "QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco"
+
 # Поддомен для Tor скрытого сервиса
 npm run update -- tor.ariorh.ton 12 "abcdefghijklmnop.onion"
 npm run update -- tor.ariorh.ton 17 "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz.onion"
+
+# Поддомен для API
+npm run update -- api.ariorh.ton 18 "192.168.1.1"
+npm run update -- api.ariorh.ton 19 "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
 ```
 
 ### Автоматическое наследование
@@ -198,7 +179,7 @@ npm run update -- tor.ariorh.ton 17 "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopq
 ### 1. Аналогия с Wildcard DNS
 - В обычном DNS для создания поддоменов нужно:
   - Добавлять отдельные A-записи для каждого поддомена
-  - Или использовать Wildcard DNS (`*.ariorh.ton`)
+  - Или использовать Wildcard DNS (`*.ariorh.com`)
   - Но Wildcard DNS не позволяет настраивать отдельные поддомены
 
 - В Wild Auto DNS:
@@ -223,47 +204,11 @@ npm run update -- tor.ariorh.ton 17 "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopq
    - Не нужно создавать отдельные контракты для каждого поддомена
    - Можно быстро добавлять и изменять записи
 
-4. **Мгновенное применение изменений**:
-   - Изменения применяются сразу после транзакции
-   - Не нужно ждать обновления DNS-серверов
-   - Не нужно перезагружать сервер
-
-5. **Безопасность**:
+4. **Безопасность**:
    - Только владелец контракта может изменять настройки
-   - Все транзакции подписываются приватным ключом
    - Контракт можно закрыть в любой момент
 
-### 4. Примеры использования
-
-1. **Создание поддоменов для разных сервисов**:
-   ```bash
-   # API сервис
-   npm run update -- api.ariorh.ton 18 "192.168.1.1"
-
-   # Блог
-   npm run update -- blog.ariorh.ton 2 "blog.ariorh.ton"
-
-   # Магазин
-   npm run update -- shop.ariorh.ton 2 "shop.ariorh.ton"
-   ```
-
-2. **Создание поддоменов для разных пользователей**:
-   ```bash
-   # Пользовательские поддомены
-   npm run update -- user1.ariorh.ton 1 "EQCD39VS5jcptHL8vMjEXrzGaRcCVYto7HUn4bpAOg8xqB2N"
-   npm run update -- user2.ariorh.ton 1 "EQCD39VS5jcptHL8vMjEXrzGaRcCVYto7HUn4bpAOg8xqB2N"
-   ```
-
-3. **Создание поддоменов для разных протоколов**:
-   ```bash
-   # IPFS контент
-   npm run update -- ipfs.ariorh.ton 11 "QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDDP1mXWo6uco"
-
-   # Tor скрытый сервис
-   npm run update -- tor.ariorh.ton 12 "abcdefghijklmnop.onion"
-   ```
-
-### 5. Как это работает технически
+### 4. Как это работает технически
 
 1. **Структура контракта**:
    - Контракт хранит настройки для всех поддоменов
@@ -294,7 +239,6 @@ npm run update -- tor.ariorh.ton 17 "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopq
 1. **Основная конфигурация сервера**:
    ```nginx
    # /etc/nginx/sites-available/ariorh.ton
-
    server {
        listen 80;
        listen 443 ssl;
@@ -311,7 +255,6 @@ npm run update -- tor.ariorh.ton 17 "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopq
 2. **Конфигурация маршрутизации**:
    ```nginx
    # /etc/nginx/backend-map.conf
-
    # Убираем порт из $host (например, :443)
    map $host $clean_host {
        default "";
@@ -332,7 +275,6 @@ npm run update -- tor.ariorh.ton 17 "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopq
 3. **Настройка основного конфига Nginx**:
    ```nginx
    # /etc/nginx/nginx.conf
-
    # server_names_hash_bucket_size 64;
    # server_name_in_redirect off;
 
@@ -373,6 +315,12 @@ npm run update -- tor.ariorh.ton 17 "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopq
    - Используйте `nginx -t` для проверки синтаксиса
    - Используйте `nginx -s reload` для безопасной перезагрузки
    - Убедитесь, что файл `backend-map.conf` включен в основной конфиг Nginx
+
+6. **Преимущество использования одного ADNL**:
+   - Не нужно запускать отдельный ADNL для каждого поддомена
+   - Все поддомены автоматически наследуют ADNL родительского домена
+   - Экономия ресурсов и упрощение управления
+   - Легкость масштабирования - можно добавлять новые поддомены без настройки дополнительных ADNL
 
 ## 🤝 Лицензия
 

@@ -9,9 +9,9 @@ npm install ton-compiler
 # Скачиваем контракт
 echo "Удаляем старый контракт..."
 rm -f dns-auto-code.cell
-rm -f dns-auto-code.fc
-echo "📥 Скачиваем контракт..."
-wget -q https://raw.githubusercontent.com/ton-blockchain/ton/refs/heads/master/crypto/smartcont/dns-auto-code.fc -O dns-auto-code.fc
+#rm -f dns-auto-code.fc
+#echo "📥 Скачиваем контракт..."
+#wget -q https://raw.githubusercontent.com/ton-blockchain/ton/refs/heads/master/crypto/smartcont/dns-auto-code.fc -O dns-auto-code.fc
 
 # Компилируем контракт
 echo "🔨 Компилируем контракт..."

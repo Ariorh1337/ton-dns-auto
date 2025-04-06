@@ -476,9 +476,8 @@ int check_owner(cell cat_table, cell owner_info, int src_wc, int src_addr, int s
   ifnot (exp) {
     return (exact?, null()); ;; update: reuse exact? to return 8 for \0
   }
-  ifnot (exact?) { ;; incomplete subdomain found, must return next resolver (-1)
-    category = "dns_next_resolver"H; ;; 0x19f02441ee588fdb26ee24b2568dd035c3c9206e11ab979be62e55558a1d17ff
-    ;; update: next resolver is now sha256("dns_next_resolver") instead of -1
+  ifnot (exact?) { ;; incomplete subdomain found, must return next resolver
+    return (pfx.slice_bits(), cat_table);
   }
   
   int pfx_bits = pfx.slice_bits();

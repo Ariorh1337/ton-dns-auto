@@ -14,7 +14,7 @@ const DOMAIN_NAME = "ariorh.ton";                                               
 const ADNL_ADRESS = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";     // ← вставь свой 
 // @ts-ignore
 const DNS_CONTRACT_ADRESS = "" || String(process.env.DNS_AUTO_CONTRACT_ADDRESS);            // ← вставь свой или оставь тот что записал deploy_contract
-const DNS_CONTRACT_PRICE = toNano('0.1');                                                   // или больше, чтобы хватило на комиссию
+const DNS_CONTRACT_PRICE = toNano('0.06');                                                   // или больше, чтобы хватило на комиссию
 
 async function main() {
     if (!MNEMONIC) {

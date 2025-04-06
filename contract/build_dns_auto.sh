@@ -2,35 +2,26 @@
 
 set -e
 
-# === 1. Скачиваем исходники TON ===
-git clone https://github.com/ton-blockchain/ton.git
-cd ton
+# Устанавливаем ton-compiler
+echo "📥 Устанавливаем ton-compiler..."
+npm install ton-compiler
 
-# Указываем безопасный каталог
-git config --global --add safe.directory "$(pwd)"
+# Компилируем контракт
+echo "🔨 Компилируем контракт..."
+npx ton-compiler --input ./dns-auto-code.fc --output ./dns-auto-code.cell --output-fift ./dns-auto-code.fif
 
-# Обновляем сабмодули
-git submodule update --init --recursive
+# Проверяем результат
+if [ ! -f "dns-auto-code.cell" ]; then
+    echo "❌ Ошибка: файл dns-auto-code.cell не создан"
+    exit 1
+fi
 
-# === 2. Устанавливаем зависимости ===
-sudo apt update
-sudo apt install -y build-essential cmake libssl-dev zlib1g-dev pkg-config libreadline-dev libmicrohttpd-dev
+# Проверяем, что файл содержит BOC
+if ! file dns-auto-code.cell | grep -q "data"; then
+    echo "❌ Ошибка: файл dns-auto-code.cell не является BOC файлом"
+    echo "Содержимое файла:"
+    hexdump -C dns-auto-code.cell | head
+    exit 1
+fi
 
-# === 3. Собираем func и fift ===
-mkdir -p build && cd build
-cmake ..
-make func fift -j$(nproc)
-cd ..
-
-# === 4. Компилируем dns-auto-code.fc в .fif ===
-FUNC=./ton/build/crypto/func
-
-echo -e "\n Если тут ругается на путь, стартани еще разок"
-
-STDLIB=./ton/crypto/smartcont/stdlib.fc
-SOURCE=./ton/crypto/smartcont/dns-auto-code.fc
-OUT=dns-auto-code.cell
-
-$FUNC -SPA -o $OUT $STDLIB $SOURCE
-
-echo -e "\n✅ Контракт собран успешно: $OUT"
+echo -e "\n✅ Контракт собран успешно: dns-auto-code.cell"

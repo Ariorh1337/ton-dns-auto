@@ -5,7 +5,7 @@
 
 - Что бы собрать свой dns-auto-code.cell из dns-auto-code.fc действуйте по пунктам:
 
-    Обратите внимание что файлы dns-auto-code.fc и stdlib.fc оставлены на случай если они будут удалены из репозитория https://github.com/ton-blockchain/ton.git
+    Обратите внимание что файл dns-auto-code.fc оставлен на случай если он будет удален из репозитория https://github.com/ton-blockchain/ton.git а во время выполнения скрипта файл будет загружен заново!
 
 1. Перейдите в дирректорию `contract`
 
@@ -13,25 +13,19 @@
 cd contract
 ```
 
-2. Удалите старый `dns-auto-code.cell`
-
-```bash
-rm dns-auto-code.cell
-```
-
-3. Сделайте скрипт автоматизации `build_dns_auto.sh` исполняемым
+2. Сделайте скрипт автоматизации `build_dns_auto.sh` исполняемым
 
 ```bash
 chmod +x build_dns_auto.sh
 ```
 
-4. Запустите скрипт (может быть понадобится sudo)
+3. Запустите скрипт (может быть понадобится sudo)
 
 ```bash
 ./build_dns_auto.sh
 ```
 
-5. Новый `dns-auto-code.cell` вы найдете в папке `contract`
+4. Новый `dns-auto-code.cell` вы найдете в папке `contract`
 
 
 # Деплой контракта

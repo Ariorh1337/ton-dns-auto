@@ -6,6 +6,13 @@ set -e
 echo "📥 Устанавливаем ton-compiler..."
 npm install ton-compiler
 
+# Скачиваем контракт
+echo "Удаляем старый контракт..."
+rm -f dns-auto-code.cell
+rm -f dns-auto-code.fc
+echo "📥 Скачиваем контракт..."
+wget -q https://raw.githubusercontent.com/ton-blockchain/ton/refs/heads/master/crypto/smartcont/dns-auto-code.fc -O dns-auto-code.fc
+
 # Компилируем контракт
 echo "🔨 Компилируем контракт..."
 npx ton-compiler --input ./dns-auto-code.fc --output ./dns-auto-code.cell --output-fift ./dns-auto-code.fif

@@ -5,37 +5,33 @@
   "main": "index.js",
   "scripts": {
     "build": "tact --config ./tact.config.json",
-    "compile": "ts-node src/compile.ts",
-    "deploy": "ts-node src/deploy.ts",
-    "upgrade": "ts-node src/upgrade.ts",
-    "register": "ts-node src/register_subdomain.ts",
-    "update": "ts-node src/update_record.ts",
-    "transfer": "ts-node src/transfer_ownership.ts",
-    "info": "ts-node src/get_info.ts",
-    "test": "jest"
+    "test": "jest",
+    "deploy": "ts-node scripts/deploy.ts",
+    "update": "ts-node scripts/update.ts",
+    "terminate": "ts-node scripts/terminate.ts",
+    "register": "ts-node scripts/register.ts",
+    "transfer": "ts-node scripts/transfe.ts",
+    "check": "ts-node scripts/test.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@tact-lang/compiler": "^1.6.3",
-    "@tact-lang/emulator": "^4.2.3",
-    "@ton/core": "^0.53.0",
-    "@ton/crypto": "^3.2.0",
-    "@ton/ton": "^13.11.2",
-    "dotenv": "^16.0.3",
-    "ton": "^13.9.0",
-    "ton-core": "^0.53.0",
-    "ton-crypto": "^3.2.0"
+    "@tact-lang/compiler": "^1.6.5",
+    "@tact-lang/emulator": "^4.3.0",
+    "@ton/core": "^0.60.1",
+    "@ton/crypto": "^3.3.0",
+    "@ton/sandbox": "^0.28.0",
+    "@ton/ton": "^15.2.1",
+    "dotenv": "^16.4.7",
+    "jest": "^29.7.0"
   },
   "devDependencies": {
-    "@ton-community/sandbox": "^0.15.0",
     "@ton-community/test-utils": "^0.3.0",
-    "@types/jest": "^29.5.12",
-    "@types/node": "^18.11.18",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.1.2",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.4"
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.14.0",
+    "ts-jest": "^29.3.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
